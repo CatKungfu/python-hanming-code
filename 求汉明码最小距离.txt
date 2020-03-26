@@ -1,0 +1,22 @@
+#python3.0
+import np
+
+def hm_code_length(hm_code):
+    # 列表a用来装汉明码距离
+    a = []
+    #print(len(hm_code))
+    for i in range(len(hm_code)):
+        matV = np.mat(hm_code)
+        # nonzero()将布尔数组转换成一组整数数组，然后使用整数数组进行下标运算。
+        for j in range(i+1,len(hm_code)):
+            if i < len(hm_code)-1:
+                smstr = np.nonzero(matV[i] - matV[i+1])
+                a.append(np.shape(smstr[1])[0])
+    print(a)
+    return min(a)
+ 
+if __name__ == '__main__':
+    # (7,4)汉明码
+    hanming_code = [[1, 0, 0, 0, 0, 1, 1], [0, 1, 0, 0, 1, 0, 1], [0, 0, 1, 0, 1, 1, 0], [0, 0, 0, 1, 1, 1, 1]]
+    #print(hanming_code)
+    print(hm_code_length(hanming_code))
